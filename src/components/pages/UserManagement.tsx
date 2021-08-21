@@ -8,6 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { memo, useCallback, useEffect, VFC } from "react";
 import { useAllUsers } from "../../hooks/useAllUsers";
+import { useLoginUser } from "../../hooks/useLoginUser";
 import { useSelectUser } from "../../hooks/useSelectUser";
 import { UserCard } from "../organisms/user/UserCard";
 import { UserDetailModal } from "../organisms/user/UserDetailModal";
@@ -17,6 +18,8 @@ export const UserManagement: VFC = memo(() => {
   const { getUsers, loading, users } = useAllUsers();
   // 初期表示時のみユーザー情報を取得する
   useEffect(() => getUsers(), []);
+
+  const { loginUser } = useLoginUser();
 
   // chakra HooksのuseDisclosureから展開
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -51,7 +54,12 @@ export const UserManagement: VFC = memo(() => {
           ))}
         </Wrap>
       )}
-      <UserDetailModal user={selectedUser} isOpen={isOpen} onClose={onClose} />
+      <UserDetailModal
+        user={selectedUser}
+        isOpen={isOpen}
+        isAdmin={loginUser?.isAdmin}
+        onClose={onClose}
+      />
     </>
   );
 });
