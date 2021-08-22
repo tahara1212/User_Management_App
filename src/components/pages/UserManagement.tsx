@@ -10,6 +10,7 @@ import { memo, useCallback, useEffect, VFC } from "react";
 import { useAllUsers } from "../../hooks/useAllUsers";
 import { useLoginUser } from "../../hooks/useLoginUser";
 import { useSelectUser } from "../../hooks/useSelectUser";
+import { TitleText } from "../atoms/title/TitleText";
 import { UserCard } from "../organisms/user/UserCard";
 import { UserDetailModal } from "../organisms/user/UserDetailModal";
 
@@ -40,19 +41,22 @@ export const UserManagement: VFC = memo(() => {
           <Spinner />
         </Center>
       ) : (
-        <Wrap p={{ base: 4, md: 10 }} justify="center">
-          {users.map((user) => (
-            <WrapItem key={user.id}>
-              <UserCard
-                id={user.id}
-                imageUrl="https://source.unsplash.com/random"
-                userName={user.username}
-                fullName={user.name}
-                onClick={onClickUser}
-              />
-            </WrapItem>
-          ))}
-        </Wrap>
+        <>
+          <TitleText>USERS</TitleText>
+          <Wrap p={{ base: 4, md: 10 }} justify="center">
+            {users.map((user) => (
+              <WrapItem key={user.id}>
+                <UserCard
+                  id={user.id}
+                  imageUrl="https://source.unsplash.com/random"
+                  userName={user.username}
+                  fullName={user.name}
+                  onClick={onClickUser}
+                />
+              </WrapItem>
+            ))}
+          </Wrap>
+        </>
       )}
       <UserDetailModal
         user={selectedUser}
