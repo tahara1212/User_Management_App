@@ -10,7 +10,7 @@ export const Home: VFC = memo(() => {
   return (
     <>
       <TitleText>HOME</TitleText>
-      <Center h="100vh">
+      <Center p={{ base: 4, md: 10 }}>
         <HomeUserCard
           imageUrl={"https://source.unsplash.com/random"}
           userName={loginUser?.username}

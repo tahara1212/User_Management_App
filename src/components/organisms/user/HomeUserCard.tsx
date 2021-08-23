@@ -22,7 +22,6 @@ export const HomeUserCard: VFC<Props> = memo((props) => {
       borderRadius="10px"
       shadow="md"
       p={10}
-      _hover={{ cursor: "pointer", opacity: 0.8 }}
     >
       <Stack textAlign="center" lineHeight="9">
         <Image
